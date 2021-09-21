@@ -1,0 +1,34 @@
+{
+  "name": "metronami-loader-core",
+  "version": "1.1.0",
+  "description": "Package in Metronami-Loader that allows the loader to update itself using NPM.",
+  "main": "bootloader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiyamashu/Metronami-Loader-Core.git"
+  },
+  "author": "Hiyamashu",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/hiyamashu/Metronami-Loader-Core/issues"
+  },
+  "homepage": "https://github.com/hiyamashu/Metronami-Loader-Core#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "download": "^8.0.0",
+    "execa": "^5.1.1",
+    "extract-zip": "^2.0.1",
+    "get-github-tag": "^1.1.0",
+    "ncp": "^2.0.0",
+    "open": "^8.2.1",
+    "semver": "^7.3.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.12"
+  }
+}
