@@ -71,7 +71,7 @@ module.exports = async (appRoot) => {
                     await applyUpdate(appRoot, getCurrentVersion)
 
                     console.log(chalk.green('[LOADER] Update complete. Restarting...'))
-                    
+
                     continue
                 }
 
