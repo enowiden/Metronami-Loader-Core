@@ -19,7 +19,8 @@ module.exports = async (appRoot) => {
     // Installation Mode
     // Will activate if currentVersion is 0.0.0
     if (currentVersion === '0.0.0') {
-        console.log(chalk.whiteBright('[LOADER] New installation detected. Downloading additional files...'))
+        console.log(chalk.whiteBright('[LOADER] New installation detected.'))
+        console.log(chalk.green('Please wait as we download additional files...'))
 
         await getUpdate(appRoot).then(async (latestTag) => {
             await applyUpdate(appRoot, latestTag)
@@ -36,14 +37,19 @@ module.exports = async (appRoot) => {
                 if (launchBrowser === true) {
                     launchBrowser = false
                     setTimeout(() => {
-                        console.log(`${chalk.whiteBright('Launching Metronami in your browser... If the page does not load, give it awhile and refresh the page.')}`)
+                        console.log(`${chalk.blue('Launching Metronami in your browser:')} ${chalk.whiteBright('If the page does not load, give it awhile and refresh the page.')}`)
+
+                        // Open the browser
                         open(`http://localhost:36554`)
 
+                        // After a delay, show a message to the user
                         setTimeout(() => {
                             console.log(`${chalk.cyan('Nothing happened? ')}${chalk.whiteBright(`Type http://localhost:36554 in your web browser's address bar to access Metronami.`)}`)
                         }, 5000)
                     }, TimeToLaunch)
                 }
+
+                // Execute the start command for Metronami
                 const { stdout } = await execa('npm run app-start', { stdio: 'inherit' })
             } catch (exitData) {
                 if (exitData.exitCode === 0) {
@@ -60,9 +66,12 @@ module.exports = async (appRoot) => {
                 if (exitData.exitCode === 201) {
                     console.log(chalk.white('[LOADER] Entering Update mode'))
                     console.log(chalk.redBright('While Metronami is updating, do not interrupt or disturb this process.'))
+
                     const getCurrentVersion = await getUpdate(appRoot)
                     await applyUpdate(appRoot, getCurrentVersion)
+
                     console.log(chalk.green('[LOADER] Update complete. Restarting...'))
+                    
                     continue
                 }
 

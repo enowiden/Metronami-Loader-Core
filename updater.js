@@ -27,8 +27,6 @@ const getUpdate = (appRoot) => {
                 return resolve(false)
             }
 
-            // console.log(chalk.greenBright(`New update found: ${tag}`))
-
             // Url of the package
             const file = `https://github.com/hiyamashu/Metronami/archive/refs/tags/${tag}.zip`
             const filePath = appRoot + '/update'
