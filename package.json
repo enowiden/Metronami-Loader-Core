@@ -1,6 +1,6 @@
 {
   "name": "metronami-loader-core",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Package in Metronami-Loader that allows the loader to update itself using NPM.",
   "main": "bootloader.js",
   "scripts": {
