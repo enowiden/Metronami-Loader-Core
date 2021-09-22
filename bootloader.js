@@ -52,19 +52,20 @@ module.exports = async (appRoot) => {
                 // Execute the start command for Metronami
                 const { stdout } = await execa('npm run app-start', { stdio: 'inherit' })
             } catch (exitData) {
-                if (exitData.exitCode === 0) {
-                    process.exit()
+                if (exitData.exitCode === 203) {
+                    // Terminate loop and end the loader
+                    break
                 }
 
                 // 200 = Restart signal
                 if (exitData.exitCode === 200) {
-                    console.log(chalk.white('[LOADER] Restart signal received. Restarting...'))
+                    console.log(chalk.whiteBright('[LOADER] Restart signal received. Restarting...'))
                     continue
                 }
 
                 // 201 - Update mode
                 if (exitData.exitCode === 201) {
-                    console.log(chalk.white('[LOADER] Entering Update mode'))
+                    console.log(chalk.whiteBright('[LOADER] Entering Update mode'))
                     console.log(chalk.redBright('While Metronami is updating, do not interrupt or disturb this process.'))
 
                     const getCurrentVersion = await getUpdate(appRoot)
@@ -78,5 +79,6 @@ module.exports = async (appRoot) => {
                 // If everything else, throw the error
                 throw exitData
             }
-        }
+    }
 }
+
